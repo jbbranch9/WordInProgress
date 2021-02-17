@@ -2,69 +2,65 @@ from wip_list import build_list as build
 
 from lexicon import word_list as lex
 
-#print(lex)
+lex = set(lex)
 
-def find_example_word(wip):
-    example = ""
+def find_examples_list(wip):
+
+    valid_example_list = []
+
     wip_len = len(wip)
 
-    if wip in lex:
-        example = wip
-    else:
-        count = 0
-        for word in lex:
-            count += 1
-            print("++++\nWORD: ", word, "\n++++\n")
-            #assume the word is a valid example for this wip, then look for counter-examples by:
-                #1) checks that each letter is in the would-be example word
-                #2) checks that any letters that appear BEFORE a given "letter" in the "wip" also appear AT LEAST ONCE before that same "letter" in the "word"
-                #3) repeat #2, checking letters that appear AFTER a given "letter" in the "wip"
-            valid = True
-            for index in range(0, wip_len):
-                letter = wip[index]
-                pre = wip[:index]
-                post = wip[index+1:]
+    #check every word in lex for match
+    for word in lex:
+        #for each word, check each letter of the wip
+        for index in range(0,wip_len):
+            letter = wip[index]
+            #if "letter" isn't in "word", break
+            #otherwise find instance in "word"
 
-                print("    ====")
-                print("    wip: ", wip, "\n    pre: ", pre, "\n    letter: ", letter, "\n    post: ", post)
-                print("    valid: ", valid)
-                print("    ====")
-               
 
-                #if the letter isn't in the word at all, word is not valid example for this wip
-                if letter not in word:
-                    valid = False
-                    break
-                #if any other letters exist BEFORE this "letter"
-                if len(pre) > 0:
-                    for other_letter in pre:
-                        #if the FIRST occurance of "other_letter" is not until AFTER "letter" in "word"
-                        if word.find(other_letter) > index or other_letter not in word:
-                            valid = False
-                            break
-                #if any other letters exist AFTER this "letter"
-                if len(post) > 0:
-                    for other_letter in post:
-                        #if the LAST occurance of "other_letter" is BEFORE "letter" in "word"
-                        if word.rfind(other_letter) < index or other_letter not in word:
-                            valid = False
-                            break
+            
 
-                print("        ----")
-                print("        still_valid: ", valid)
-                print("        ----")
+            if letter in word:
 
-                #if still valid at this point, then "word" is proven to be a valid example for "wip"
-                if valid:
-                    example = word
+                print("\n\n\n")
+                print(word)
+                print(wip)
+                print(letter)
+
+
+                #if this is the first "letter" we're checking for this "word",
+                if index == 0:
+                    #then store the index of the FIRST instance of this "letter" in this "word"
+                    last_verified_index = word.find(letter)
+
+                    print('first letter found: ', letter)
+
                 else:
-                    break
+                    #if this "letter" IS in this "word", AND it is NOT the first letter of the "wip",
+                    #AND we have reached the last letter of the WIP
+                    #then check if the LAST instance of this "letter" in this "word" is AFTER the "last_verified_index" (i.e. has a larger index)
+                    
+                    print('next letter found: ', letter)
+                    
+                    if last_verified_index < word.rfind(letter):
+                        print("in order")
+                        if index == wip_len:
+                            valid_example_list.append(word)
+                        else:
+                            print("out of order, break")
+                            continue
+                    else:
+                        break
 
-            #once example word is no longer empty string, we don't need to keep looping through "word"(s) in "lex"
-            if example != "":
+
+
+            else:
                 break
-    print(len(lex)-count)
-    return example
 
-(find_example_word("noth"))
 
+    return valid_example_list
+
+print(find_examples_list("hlo"))
+
+print("DONE")
