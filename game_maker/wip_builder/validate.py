@@ -4,6 +4,41 @@ from lexicon import word_list as lex
 
 lex = set(lex)
 
+def validate_example(wip, example):
+
+    valid = False
+
+    wip_len = len(wip)
+
+    for index in range(0,wip_len):
+        letter = wip[index]
+
+        if letter in example:
+            #if checking FIRST letter in "wip"
+            if index == 0:
+                last_verified_index = 0
+                continue
+
+            #if checking SECOND through LAST letter in "wip"
+            else:
+                if example.rfind(letter) <= last_verified_index:
+                    valid = False
+                    break
+                else:
+                    last_verified_index = index
+                    valid = True
+                    continue
+        else:
+            break
+
+    
+
+    return valid
+
+
+print(validate_example("hnbd", "husband"))
+
+
 def find_examples_list(wip):
 
     valid_example_list = []
@@ -18,40 +53,21 @@ def find_examples_list(wip):
             #if "letter" isn't in "word", break
             #otherwise find instance in "word"
 
-
-            
-
             if letter in word:
 
-                print("\n\n\n")
-                print(word)
-                print(wip)
-                print(letter)
-
-
-                #if this is the first "letter" we're checking for this "word",
                 if index == 0:
-                    #then store the index of the FIRST instance of this "letter" in this "word"
+
                     last_verified_index = word.find(letter)
 
-                    print('first letter found: ', letter)
-
                 else:
-                    #if this "letter" IS in this "word", AND it is NOT the first letter of the "wip",
-                    #AND we have reached the last letter of the WIP
-                    #then check if the LAST instance of this "letter" in this "word" is AFTER the "last_verified_index" (i.e. has a larger index)
                     
-                    print('next letter found: ', letter)
-                    
-                    if last_verified_index < word.rfind(letter):
-                        print("in order")
-                        if index == wip_len:
-                            valid_example_list.append(word)
-                        else:
-                            print("out of order, break")
-                            continue
-                    else:
+                    if word.rfind(letter) < last_verified_index:
                         break
+
+                    else:
+                        pass
+                
+                last_verified_index = index
 
 
 
@@ -61,6 +77,6 @@ def find_examples_list(wip):
 
     return valid_example_list
 
-print(find_examples_list("hlo"))
+
 
 print("DONE")
