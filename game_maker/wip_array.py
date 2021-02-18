@@ -1,10 +1,12 @@
 from random import randint
+from weighted_alphabet import get_weighted as get_alphabet
 
 #returns a WEIGHTED random English letter
 #"extra_weight" is a string of letters that should be more probable, 
 #it functions as if it were adding extra 'tickets' for certain letters to the 'letter raffle'
 def wrand_letter(extra_weight = ""):
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    #alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet = get_alphabet()
     #'heavy' letters occur more often
     weighted_alphabet = alphabet + extra_weight
     index = randint(0, len(weighted_alphabet)-1)
@@ -54,9 +56,17 @@ def build_list():
             "last_insert": new_letter,
             "last_index": new_index,
             }   
+
+
         wip_list.append(wip_data)
 
 
-      
+    
+    for index in range(len(wip_list)):
+        frame = str(index)
+        if len(frame) == 1:
+            frame = "0" + frame
+        wip_list[index]["frame"] = frame
 
     return wip_list
+

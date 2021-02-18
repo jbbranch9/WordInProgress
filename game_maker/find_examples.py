@@ -5,21 +5,29 @@ from wip_array import build_list as build_list
 
 
 
-wip_list = build_list()
 
-print("\n\n\n", wip_list[29], "\n\n\n")
 
-for frame in wip_list:
-    wip = frame["wip"]
-    examples = []
-    for example_word in lex:
-        #print(example_word)
-        if validate(wip, example_word):
-            examples.append(example_word)
+def find_examples(wip_list):
+    #"frame" is the keyed collection (dictionary) of all info for each 'frame' (letter addition) of the wip as it is built
+    for frame in wip_list:
+        wip = frame["wip"]
+        examples = []
+        for example_word in lex:
+            if validate(wip, example_word):
+                examples.append(example_word)
 
-    frame["examples"] = examples
+        frame["examples"] = examples
 
-for frame in wip_list:
+test_list = build_list()
+
+for frame in test_list:
     print(frame)
-    pause = input()
-    
+
+
+find_examples(test_list)
+
+print("\n\n\n")
+
+for frame in test_list:
+    print(frame)
+
