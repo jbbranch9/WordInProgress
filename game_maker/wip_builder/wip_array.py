@@ -2,9 +2,16 @@ from random import randint
 
 #returns a random English letter
 def rand_letter():
-    index = randint(0, 25)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    index = randint(0, 25)
     return alphabet[index]
+
+#returns a WEIGHTED random English letter
+def wrand_letter():
+    #'heavy' letters occur more often
+    weighted_alphabet = "AAABBCCDDEEEEEEFFGGHHHIIIJKLLMMNNOOOPPQRRSSSSTTUVWXYZ"
+    index = randint(0, len)
+    return weighted_alphabet[index]
 
 #builds a list 
 def build_list():
