@@ -1,5 +1,5 @@
-def validate_example(wip, example):
-    last_verified_index = None
+def validate_example_word(wip, example):
+    last_verified_index = 0
 
     valid = True
 

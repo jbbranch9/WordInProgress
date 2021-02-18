@@ -1,23 +1,21 @@
 from random import randint
 
-#returns a random English letter
-def rand_letter():
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    index = randint(0, 25)
-    return alphabet[index]
-
 #returns a WEIGHTED random English letter
-def wrand_letter():
+#"extra_weight" is a string of letters that should be more probable, 
+#it functions as if it were adding extra 'tickets' for certain letters to the 'letter raffle'
+def wrand_letter(extra_weight = ""):
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
     #'heavy' letters occur more often
-    weighted_alphabet = "AAABBCCDDEEEEEEFFGGHHHIIIJKLLMMNNOOOPPQRRSSSSTTUVWXYZ"
-    index = randint(0, len)
+    weighted_alphabet = alphabet + extra_weight
+    index = randint(0, len(weighted_alphabet)-1)
     return weighted_alphabet[index]
+
 
 #builds a list 
 def build_list():
        
     #wip is short for word_in_progress
-    wip = rand_letter()
+    wip = wrand_letter()
 
     wip_data = {"wip": wip,
             "last_insert": wip,
@@ -32,7 +30,7 @@ def build_list():
         #store length of wip
         wip_len = len(wip)
 
-        new_letter = rand_letter()
+        new_letter = wrand_letter()
         new_index = randint(0, wip_len)
 
 
