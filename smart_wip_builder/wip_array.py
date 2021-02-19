@@ -13,7 +13,7 @@ def infix(wip, letter, index):
 #used to reverse-engineer a wip from a "seed" back down to a single character 
 #(build_wip_array can only ADD letters. this ensures the array is a full 30 frames)
 def deconstruct(seed):
-    deconstructions = []
+    deconstructions = [seed]
     while len(seed) > 1:
         index = randint(0, len(seed)-1)
         seed = seed[:index] + seed[index+1:]
@@ -34,9 +34,18 @@ def build_wip_array(seed = ""):
     wip_list.append(wip)
 
     while len(wip) < 30:
+
         wip = infix(wip, get_letter(), randint(0, len(wip)-1))
+
         wip_list.append(wip)
+    
+
+    wip_list = set(wip_list)
+    wip_list = list(wip_list)#
     wip_list = sorted(wip_list, key=len)
+
+
     return wip_list
 
+#print(build_wip_array("hello"))
 

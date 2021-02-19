@@ -1,23 +1,54 @@
 from smart import get_smart_wip
 from wip_array import build_wip_array as build_array_around
+from difference import find_delta as delta
+from example import find_example_words as examples
 
-def game():
+def game(min_wip_length = 4, min_word_examples = 5):
 
-    #wip = get_smart_wip(5, 7)
-    wip = "hello"
+    wip = get_smart_wip(min_wip_length, min_word_examples, "hello")
+
+    print(wip)
+    #wip = "hello"
     frames = build_array_around(wip)
 
+    print(frames)
 
+    pause = input()
 
     game_data = []
     for frame in frames:
+        wip = frame
+        
         frame_data = {}
-        frame_data["wip"] = frame
-        frame_data
+        
 
-    return frames
+        frame_data["wip"] = wip
+        
+        name = str(len(wip))
+
+        if len(name) == 1:
+            name = "0" + name
+        frame_data["frame"] = str(name)
+
+        frame_data["examples"] = examples(wip)
+
+        game_data.append(frame_data)
+
+    for i in range(0, len(game_data)-1):
+        frame = game_data[i]
+        next_frame = game_data[i+1]
+        S = frame["wip"]
+        L = next_frame["wip"]
+
+        frame["delta"] = delta(S, L)
+    
+    game_data[-1]["delta"] = (None, None)
 
 
+    return game_data
 
-print(game())
+data = game()
+
+for i in data:
+    print(i)
 print("DONE")
