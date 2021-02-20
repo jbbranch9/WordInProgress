@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://letter.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://ASSETS/Peaberry_Pixel_Font/Peaberry Monospace/PeaberryMono.otf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = SubResource( 1 )
+
+[node name="letter" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="text_box" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]A[/center]"
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
