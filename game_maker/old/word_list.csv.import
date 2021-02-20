@@ -6,7 +6,7 @@ valid=false
 
 [deps]
 
-source_file="res://word_list/word_list.csv"
+source_file="res://game_maker/old/word_list.csv"
 [params]
 
 compress=true
