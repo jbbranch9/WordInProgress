@@ -1,0 +1,45 @@
+PROJECT TITLE: WORD IN PROGRESS
+GAME TITLE IDEAS: "LETTERWONKY", "WORD IN PROGRESS"
+AUTHOR(S): JACOB BRANCH (#JBBRANCH9)
+
+
+DOCUMENTATION:
+
+GLOSSARY:
+
+	-WIP- A "Word In Progress", built one letter at a time, through a series of indexed infixes*
+		note: a WIP exists in one of two possible states: valid* and Letterwonky*
+		
+	-infix- to lengthen a WIP by inserting a single letter character at a specific index (includes pre- and suf-fixes)
+		note: once infixed, any given letter's absolute index may change, but its location relative to the other placed letters CANNOT and WILL NOT change.
+	
+	-valid- describes a WIP that COULD form a recognized* word through a combination of infixes
+	
+	-Letterwonky- describes a WIP which CANNOT form any recognized* word through any combination of infixes
+	
+	-recognized word(s)- When complete, this list 'should' include ALL properly spelled, non-technical, non-profane English words, which are less than 30 letters long.
+	
+	-frame-
+	
+	-round-
+
+OVERVIEW:
+
+	LETTERWONKY is a multiplayer, word-building game, mobile app. 
+	
+	Each round, a single Word-In-Progress, or WIP, is built one letter at a time, through a series of infixes, from psuedo-random letters at psuedo-random indices.
+	The progress of the WIP is displayed on a shared screen, visible to all players called the "WIP-panel". 
+	Individual letters appear in Scrabble-like graphical blocks or tiles.
+	Below the graphical display for the WIP, each player will see a touch-keyboard, made of visually similar letter tiles.
+	Letters can be "placed" by dragging them up from the keyboard, and releasing them in the WIP-panel.
+	There are also buttons labeled "Submit", "Recall", and "LETTERWONKY" in the keyboard panel, whose functions are detailed below.
+	
+GAMEPLAY:
+
+	Players' objective is to create valid, complete words, by adding letters from their keyboard to the current WIP-panel (as many letters as needed, where ever needed)
+
+	The game slowly reveals the WIP one frame (one infixed letter) at a time. 
+	Between each frame, there is a pause of (about) 10-15 seconds.
+	During this pause, each player can drag letters up from their keyboard. 
+	When hovering while dragging a letter into the WIP panel, any nearby letter tiles will pull apart, creating a space in which the new letter can be dropped (similar to Words with Friends letter tray).
+	When the player thinks that the current arrangement of letters in the WIP-panel spells a valid word, they hit the "submit" button.
