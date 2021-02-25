@@ -10,14 +10,16 @@ GLOSSARY:
 	-WIP- A "Word In Progress", built one letter at a time, through a series of indexed infixes*
 		note: a WIP exists in one of two possible states: valid* and Letterwonky*
 		
-	-infix- to lengthen a WIP by inserting a single letter character at a specific index (includes pre- and suf-fixes)
+	-infix- to lengthen a WIP by inserting a single letter character at a specific index (for simplicity of language, this can be assumed to include prefixes and suffixes)
 		note: once infixed, any given letter's absolute index may change, but its location relative to the other placed letters CANNOT and WILL NOT change.
 	
 	-valid- describes a WIP that COULD form a recognized* word through a combination of infixes
 	
 	-Letterwonky- describes a WIP which CANNOT form any recognized* word through any combination of infixes
-	
+
 	-recognized word(s)- When complete, this list 'should' include ALL properly spelled, non-technical, non-profane English words, which are less than 30 letters long.
+
+	-lexicon- the read-only set that contains all recognized words
 	
 	-frame- a step in a WIP's evolution, named for the current length in letter characters of the WIP string
 		for example, the WIP "GILE" is said to be in its 4th frame, as its first four letters have been infixed
@@ -26,7 +28,7 @@ GLOSSARY:
 	
 	-round- the collection of all 30 frames of a WIP
 
-	-packed_game- a read-only, text-based file containing all the data needed to run an entire round, including but not limited to the following data points for each of 30 frames:
+	-packed_game- a read-only, text-based file containing all the data needed to run an entire round, including but not limited to the following data points for each of the 30 frames:
 		a) current WIP string
 		b) character and index of next infix (i.e. what's needed to morph the current frame into next frame)
 		c) list of valid/recognized words for the WIP in this frame	
@@ -51,16 +53,28 @@ GAMEPLAY:
 
 	The game slowly reveals the WIP by revealing one frame (one infixed letter) at a time. 
 	Between each frame, there is a pause of (about) 10-15 seconds.
-	During this pause, each player can drag letters up from their keyboard. 
-	When hovering while dragging a letter into the WIP panel, any letter tiles near the hover location will pull apart, creating a space in which the new letter can be dropped (similar to rearranging the "Words with Friends" letter tray).
+	During this pause, each player can drag letters up from their keyboard, to try to complete the WIP into a recognized word. 
+	
+	When hovering while dragging a letter into the WIP panel, any letter tiles near the hover spot will pull apart, creating a space into which the new letter can be dropped (similar to rearranging the "Words with Friends" letter tray).
+	Players can recall all of the letters that they have placed at any time, by using the "recall" button, leaving behind only the WIP letters in the WIP-panel
+	
 	When the player thinks that the current arrangement of letters in the WIP-panel spells a valid word, they hit the "submit" button.
-	A player submitted word is scored iff:
+	A player-submitted word is scored iff:
 		a) ALL of the letters in the WIP-panel combine to form a 'recognized word'
 		b) the word is valid for that particular WIP at that particular frame
 		c) the word has not been scored by any player during this round
 
+STRUCTURE/COMPONENTS:
 
+	a) 'packed_game' back-end - A Python script for generating packed_game files
+		since packed_game files are read-only, the back-end does not necessarily need to interface with the game/app itself
+		
+		as of 2021.02.25, this is the only part of code that is "in progress". It can currently:
+			a) generate a psuedo-random WIP, up to its 30th frame, 
+			b) curate "good" rounds by saving any packed_game(s) with a minimum number of "good" frames (those containing valid and recognized words) and dicarding others
 
+	b) game logic - 
+	c) user interface - 
 
 
 
