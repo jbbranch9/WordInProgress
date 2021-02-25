@@ -1,5 +1,5 @@
 PROJECT TITLE: WORD IN PROGRESS
-GAME TITLE IDEAS: "LETTERWONKY", "WORD IN PROGRESS"
+GAME TITLE IDEAS: "LETTERWONKY", "WORD-IN-PROGRESS"
 AUTHOR(S): JACOB BRANCH (#JBBRANCH9)
 
 
@@ -19,9 +19,17 @@ GLOSSARY:
 	
 	-recognized word(s)- When complete, this list 'should' include ALL properly spelled, non-technical, non-profane English words, which are less than 30 letters long.
 	
-	-frame-
+	-frame- a step in a WIP's evolution, named for the current length in letter characters of the WIP string
+		for example, the WIP "GILE" is said to be in its 4th frame, as its first four letters have been infixed
+		after another infix, say "H" at index "2", the WIP will be "GIHLE", and is said to be in its 5th frame
+		note: every WIP has 30 frames
 	
-	-round-
+	-round- the collection of all 30 frames of a WIP
+
+	-packed_game- a read-only, text-based file containing all the data needed to run an entire round, including but not limited to the following data points for each of 30 frames:
+		a) current WIP string
+		b) character and index of next infix (i.e. what's needed to morph the current frame into next frame)
+		c) list of valid/recognized words for the WIP in this frame	
 
 OVERVIEW:
 
@@ -30,16 +38,30 @@ OVERVIEW:
 	Each round, a single Word-In-Progress, or WIP, is built one letter at a time, through a series of infixes, from psuedo-random letters at psuedo-random indices.
 	The progress of the WIP is displayed on a shared screen, visible to all players called the "WIP-panel". 
 	Individual letters appear in Scrabble-like graphical blocks or tiles.
+
 	Below the graphical display for the WIP, each player will see a touch-keyboard, made of visually similar letter tiles.
-	Letters can be "placed" by dragging them up from the keyboard, and releasing them in the WIP-panel.
+	Letters can be "placed" by dragging them up from the keyboard, and releasing them at the desired location in the WIP-panel.
 	There are also buttons labeled "Submit", "Recall", and "LETTERWONKY" in the keyboard panel, whose functions are detailed below.
 	
 GAMEPLAY:
 
-	Players' objective is to create valid, complete words, by adding letters from their keyboard to the current WIP-panel (as many letters as needed, where ever needed)
+	Players' objective is to 
+		a) create valid, complete words, by adding letters from their keyboard to the current WIP-panel (as many letters as needed, where ever needed)
+		b) recognize as early as possible when the WIP has gone 'letterwonky' 
 
-	The game slowly reveals the WIP one frame (one infixed letter) at a time. 
+	The game slowly reveals the WIP by revealing one frame (one infixed letter) at a time. 
 	Between each frame, there is a pause of (about) 10-15 seconds.
 	During this pause, each player can drag letters up from their keyboard. 
-	When hovering while dragging a letter into the WIP panel, any nearby letter tiles will pull apart, creating a space in which the new letter can be dropped (similar to Words with Friends letter tray).
+	When hovering while dragging a letter into the WIP panel, any letter tiles near the hover location will pull apart, creating a space in which the new letter can be dropped (similar to rearranging the "Words with Friends" letter tray).
 	When the player thinks that the current arrangement of letters in the WIP-panel spells a valid word, they hit the "submit" button.
+	A player submitted word is scored iff:
+		a) ALL of the letters in the WIP-panel combine to form a 'recognized word'
+		b) the word is valid for that particular WIP at that particular frame
+		c) the word has not been scored by any player during this round
+
+
+
+
+
+
+
