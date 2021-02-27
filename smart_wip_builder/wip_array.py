@@ -41,7 +41,7 @@ def build_wip_array(seed = ""):
     
 
     wip_list = set(wip_list)
-    wip_list = list(wip_list)#
+    wip_list = list(wip_list)
     wip_list = sorted(wip_list, key=len)
 
 
